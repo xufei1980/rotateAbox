@@ -27,21 +27,92 @@
             -webkit-transition:all 1s linear 0s;
             transition:all 1s linear 0s;
         }
+        .heart-shape{
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 200px;
+            height: 200px;
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+            background-color: hotpink;
+        }
+        .heart-shape:before,
+        .heart-shape:after{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            content: '';
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -o-border-radius: 50%;
+            border-radius: 50%;
+            background-color: hotpink;
+        }
+        .heart-shape:before{
+            bottombottom: 0px;
+            left: -90px;
+        }
+        .heart-shape:after{
+            top: -90px;
+            rightright: 0px;
+        }
+.text{
+    position: absolute;
+    bottom: 200px;
+    left: 100px;
+    font-style: italic;
+    font-size: 20px;
+    color: #007aff;
+
+}
+        @-webkit-keyframes zoomIn {
+            from {
+                opacity: 0;
+                -webkit-transform: scale3d(.3, .3, .3);
+                transform: scale3d(.3, .3, .3);
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                -webkit-transform: scale3d(.3, .3, .3);
+                transform: scale3d(.3, .3, .3);
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
 <div class="box"></div>
+<div class="heart-shape"></div>
+<div class="text">爱你 老婆！！点点方盒子</div>
 <script type="text/javascript" src="js/fastclick.min.js"></script>
 <script type="text/javascript">
     FastClick.attach(document.body);
-    var oBox=document.querySelector('.box');
+    var oBox=document.querySelector('.box'),
+        oHeartShape=document.querySelector('.heart-shape'),
+        oText=document.querySelector('.text');
     oBox.addEventListener('click',function () {
-        this.style.webkitTransitionDuration='1s';
-        this.style.webkitTransform='rotate(360deg)';
-        var delay=window.setTimeout(function () {
-             this.style.webkitTransitionDuration='0s';
-            this.style.webkitTransform='rotate(0deg)';
-        }.bind(this),1000)
+         this.style.display='none';
+         oText.style.display='none';
+        oHeartShape.style.display='block';
+        oHeartShape.style.webkitAnimation='zoomIn 1s linear 0s both';
     },false)
 </script>
 </body>
